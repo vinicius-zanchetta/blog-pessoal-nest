@@ -17,6 +17,7 @@ export class PostagemService {
     return await this.postagemRepository.find({
       relations: {
         tema: true,
+        usuario: true
       }
     });
   }
@@ -26,6 +27,7 @@ export class PostagemService {
       where: { id },
       relations: {
         tema: true,
+        usuario: true
       }
     });
 
@@ -40,6 +42,7 @@ export class PostagemService {
       where: { titulo: ILike(`%${titulo}%`) },
       relations: {
         tema: true,
+        usuario: true
       }
     })
   }
@@ -49,6 +52,7 @@ export class PostagemService {
       where: { texto: ILike(`%${texto}%`) },
       relations: {
         tema: true,
+        usuario: true
       }
     })
   }
@@ -64,10 +68,10 @@ export class PostagemService {
 
   async update(postagem: Postagem): Promise<Postagem> {
 
-    let buscaPostagem = await this.findById(postagem.id);
+    await this.findById(postagem.id);
 
-    if (!buscaPostagem || !postagem.id) {
-      throw new HttpException("A postagem não foi encontrada", HttpStatus.NOT_FOUND)
+    if (!postagem.id) {
+      throw new HttpException("É necessário passar o ID da postagem a ser atualizada!", HttpStatus.NOT_FOUND)
     }
 
     if (postagem.tema) {

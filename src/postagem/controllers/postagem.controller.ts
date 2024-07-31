@@ -1,44 +1,46 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards } from "@nestjs/common";
 import { PostagemService } from "../services/postagem.service";
 import { Postagem } from "../entities/postagem.entity";
+import { JwtAuthGuard } from "../../auth/guard/jwt-auth.guard";
 
+@UseGuards(JwtAuthGuard)
 @Controller("/postagens")
 export class PostagemController {
-    constructor(private readonly postagemService: PostagemService){}
+    constructor(private readonly postagemService: PostagemService) { }
 
     @Get()
     @HttpCode(HttpStatus.OK)
-    findAll(): Promise<Postagem[]>{
+    findAll(): Promise<Postagem[]> {
         return this.postagemService.findAll();
     }
 
     @Get('/:id')
     @HttpCode(HttpStatus.OK)
-    findById(@Param('id', ParseIntPipe) id: number): Promise<Postagem>{
+    findById(@Param('id', ParseIntPipe) id: number): Promise<Postagem> {
         return this.postagemService.findById(id);
     }
 
     @Get('/titulo/:titulo')
     @HttpCode(HttpStatus.OK)
-    findByTitulo(@Param('titulo') titulo: string): Promise<Postagem[]>{
+    findByTitulo(@Param('titulo') titulo: string): Promise<Postagem[]> {
         return this.postagemService.findByTitulo(titulo);
     }
 
     @Get('/texto/:texto')
     @HttpCode(HttpStatus.OK)
-    findByTexto(@Param('texto') texto: string): Promise<Postagem[]>{
+    findByTexto(@Param('texto') texto: string): Promise<Postagem[]> {
         return this.postagemService.findByTexto(texto);
     }
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
-    create(@Body() postagem: Postagem): Promise<Postagem>{
+    create(@Body() postagem: Postagem): Promise<Postagem> {
         return this.postagemService.create(postagem);
     }
 
     @Put()
     @HttpCode(HttpStatus.OK)
-    update(@Body() postagem: Postagem): Promise<Postagem>{
+    update(@Body() postagem: Postagem): Promise<Postagem> {
         return this.postagemService.update(postagem);
     }
 
