@@ -5,7 +5,7 @@ import { Tema } from "../../tema/entities/tema.entity";
 import { Usuario } from "../../usuario/entities/usuario.entity";
 import { ApiProperty } from "@nestjs/swagger";
 
-@Entity({name: "tb_postagens"})
+@Entity({name: "db_blopessoal_tb_postagens"})
 export class Postagem {
     @PrimaryGeneratedColumn()
     @ApiProperty() 

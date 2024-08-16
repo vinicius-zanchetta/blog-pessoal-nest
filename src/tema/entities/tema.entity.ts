@@ -4,7 +4,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Postagem } from "../../postagem/entities/postagem.entity";
 import { ApiProperty } from "@nestjs/swagger";
 
-@Entity({name: "tb_temas"})
+@Entity({name: "db_blogpessoal_tb_temas"})
 export class Tema {
 
     @PrimaryGeneratedColumn()

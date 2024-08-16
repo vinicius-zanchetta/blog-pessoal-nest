@@ -4,7 +4,7 @@ import { Postagem } from "../../postagem/entities/postagem.entity"
 import { Transform, TransformFnParams } from "class-transformer"
 import { ApiProperty } from "@nestjs/swagger"
 
-@Entity({name: "tb_usuarios"})
+@Entity({name: "db_blogpessoal_tb_usuarios"})
 export class Usuario {
 
     @PrimaryGeneratedColumn() 
