@@ -19,7 +19,7 @@ export class Postagem {
 
     @Transform(({ value }: TransformFnParams) => value?.trim())
     @IsNotEmpty()
-    @Column({length: 100, nullable:false})
+    @Column({length: 1000, nullable:false})
     @ApiProperty() 
     texto: string;
 
